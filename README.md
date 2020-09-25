@@ -41,5 +41,5 @@ docker run -d --restart=always \
 
 # 构建
 ```
-$ docker build -t xm69/nginx:1.19 .
+$ docker build -t xm69/nginx .
 ```

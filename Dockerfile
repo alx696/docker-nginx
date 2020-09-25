@@ -14,7 +14,7 @@ COPY ["resource/", "/resource/"]
 
 #执行
 RUN \
-  && apk update \
+  apk update \
   \
   #设置时区
   && apk add --no-cache tzdata \
