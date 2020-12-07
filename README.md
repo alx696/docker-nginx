@@ -34,8 +34,8 @@ docker run -d --restart=always \
   -p 80:80 -p 443:443 \
   -v ${PWD}/nginx.conf:/etc/nginx/nginx.conf \
   -v ${PWD}/web:/web \
-  -v /etc/letsencrypt/live/app.lilu.red/fullchain.pem:/tls/server.cer \
-  -v /etc/letsencrypt/live/app.lilu.red/privkey.pem:/tls/server.key \
+  -v /etc/letsencrypt/live/lilu.red/fullchain.pem:/tls/server.cer \
+  -v /etc/letsencrypt/live/lilu.red/privkey.pem:/tls/server.key \
   --name "nginx" xm69/nginx
 ```
 
