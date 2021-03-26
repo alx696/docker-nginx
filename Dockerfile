@@ -7,7 +7,7 @@
 FROM alpine:3
 
 #nginx版本
-ENV NGINX_VERSION 1.19.1
+ENV NGINX_VERSION 1.19.8
 
 #复制资源
 COPY ["resource/", "/resource/"]
@@ -38,12 +38,15 @@ RUN \
 		geoip-dev \
   && curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
   && curl -fSL https://github.com/openresty/headers-more-nginx-module/archive/v0.33.tar.gz -o headers.tar.gz \
+  && curl -fSL https://github.com/arut/nginx-rtmp-module/archive/refs/heads/master.zip -o rtmp.tar.gz \
   && tar zxf nginx.tar.gz \
   && tar zxf headers.tar.gz \
-  && rm nginx.tar.gz headers.tar.gz \
+  && tar zxf rtmp.tar.gz \
+  && rm nginx.tar.gz headers.tar.gz rtmp.tar.gz \
   && mv nginx-${NGINX_VERSION} nginx \
   && mv headers-more-nginx-module-0.33 headers-more-nginx-module \
   && mv headers-more-nginx-module /resource/ \
+  && mv nginx-rtmp-module-master /resource/nginx-rtmp-module \
   && cd nginx \
   && sh configure --prefix=/etc/nginx \
       --sbin-path=/usr/sbin/nginx \
@@ -53,6 +56,7 @@ RUN \
       --with-http_v2_module \
       --with-http_gzip_static_module \
       --add-module=/resource/headers-more-nginx-module \
+      --add-module=/resource/nginx-rtmp-module \
   && make -j$(getconf _NPROCESSORS_ONLN) \
   && make install \
   && cd ../ \
