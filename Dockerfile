@@ -36,13 +36,14 @@ RUN \
 		libxslt-dev \
 		gd-dev \
 		geoip-dev \
+    unzip \
   && curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
   && curl -fSL https://github.com/openresty/headers-more-nginx-module/archive/v0.33.tar.gz -o headers.tar.gz \
-  && curl -fSL https://github.com/arut/nginx-rtmp-module/archive/refs/heads/master.zip -o rtmp.tar.gz \
+  && curl -fSL https://github.com/arut/nginx-rtmp-module/archive/refs/heads/master.zip -o rtmp.zip \
   && tar zxf nginx.tar.gz \
   && tar zxf headers.tar.gz \
-  && tar zxf rtmp.tar.gz \
-  && rm nginx.tar.gz headers.tar.gz rtmp.tar.gz \
+  && unzip rtmp.zip \
+  && rm nginx.tar.gz headers.tar.gz rtmp.zip \
   && mv nginx-${NGINX_VERSION} nginx \
   && mv headers-more-nginx-module-0.33 headers-more-nginx-module \
   && mv headers-more-nginx-module /resource/ \
