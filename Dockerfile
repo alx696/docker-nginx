@@ -7,7 +7,7 @@
 FROM alpine:3
 
 #nginx版本
-ENV NGINX_VERSION 1.19.8
+ENV NGINX_VERSION 1.21.0
 
 #复制资源
 COPY ["resource/", "/resource/"]
